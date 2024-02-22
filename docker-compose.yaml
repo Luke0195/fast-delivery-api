@@ -1,0 +1,37 @@
+version: '3.9'
+
+services:
+  postgresDb:
+    image: postgres:16
+    restart: always
+    container_name: fast-delivery-db
+    ports:
+      - '5432:5432'
+    environment:
+
+      POSTGRES_PASSWORD: fastdb
+      POSTGRES_DB: "fastdb"
+    volumes:
+      - pgData:/var/lib/postgresql/data
+    networks:
+      - fast-delivery-network
+
+  pgAdmin4:
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: any@mail.com
+      PGADMIN_DEFAULT_PASSWORD: any
+    ports:
+      - 16543:80
+    depends_on:
+      - postgresDb
+    networks:
+      - fast-delivery-network
+
+volumes:
+  pgData:
+
+networks:
+  fast-delivery-network:
+    driver: bridge
