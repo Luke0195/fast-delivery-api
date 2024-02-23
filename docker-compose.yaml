@@ -8,7 +8,7 @@ services:
     ports:
       - '5432:5432'
     environment:
-
+      POSTGRES_USER: root
       POSTGRES_PASSWORD: fastdb
       POSTGRES_DB: "fastdb"
     volumes:
@@ -28,6 +28,7 @@ services:
       - postgresDb
     networks:
       - fast-delivery-network
+
 
 volumes:
   pgData:
