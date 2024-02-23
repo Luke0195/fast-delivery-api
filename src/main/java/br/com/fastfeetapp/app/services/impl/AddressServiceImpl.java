@@ -9,30 +9,29 @@ import br.com.fastfeetapp.app.models.Address;
 import br.com.fastfeetapp.app.repositories.AddressPostgresRepository;
 import br.com.fastfeetapp.app.services.AddressService;
 import br.com.fastfeetapp.app.services.exceptions.ResourceAlreadyExists;
+import lombok.AllArgsConstructor;
 
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Objects;
+
 import java.util.Optional;
 
 
 @Service
-
+@AllArgsConstructor
 public class AddressServiceImpl implements AddressService {
 
-    @Autowired
-    private  AddressPostgresRepository addressRepository;
+    private final  AddressPostgresRepository addressRepository;
 
     @Override
     @Transactional
     public AddressResponseDto createAddress(AddressRequestDto requestDto) {
-        O
-        Address createdAddress = AddressMapper.mapAddressDtoToEntity(requestDto);
+        Optional<Address> addressAlreadyExists = addressRepository.findByCode(requestDto.getCode());
+        if(addressAlreadyExists.isPresent()) throw new ResourceAlreadyExists("Address code already exists");
+        Address createdAddress = AddressMapper.INSTANCE.mapAddressRequestDtoToEntity(requestDto);
         addressRepository.save(createdAddress);
-        return AddressMapper.mapEntityToAddressResponseDto(createdAddress);
+        return AddressMapper.INSTANCE.mapAddressEntityToDto(createdAddress);
     }
 
 
