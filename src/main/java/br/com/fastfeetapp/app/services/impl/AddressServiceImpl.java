@@ -2,8 +2,8 @@ package br.com.fastfeetapp.app.services.impl;
 
 
 
-import br.com.fastfeetapp.app.dtos.AddressRequestDto;
-import br.com.fastfeetapp.app.dtos.AddressResponseDto;
+import br.com.fastfeetapp.app.dtos.address.AddressRequestDto;
+import br.com.fastfeetapp.app.dtos.address.AddressResponseDto;
 import br.com.fastfeetapp.app.mapper.AddressMapper;
 import br.com.fastfeetapp.app.models.Address;
 import br.com.fastfeetapp.app.repositories.AddressPostgresRepository;

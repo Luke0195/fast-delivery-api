@@ -1,7 +1,7 @@
 package br.com.fastfeetapp.app.controllers;
 
-import br.com.fastfeetapp.app.dtos.RecipentRequestDto;
-import br.com.fastfeetapp.app.dtos.RecipentResponseDto;
+import br.com.fastfeetapp.app.dtos.recipent.RecipentRequestDto;
+import br.com.fastfeetapp.app.dtos.recipent.RecipentResponseDto;
 import br.com.fastfeetapp.app.services.impl.RecipentServiceImpl;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;

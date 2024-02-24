@@ -1,4 +1,4 @@
-package br.com.fastfeetapp.app.dtos;
+package br.com.fastfeetapp.app.dtos.address;
 
 import br.com.fastfeetapp.app.models.Address;
 import com.fasterxml.jackson.annotation.JsonProperty;

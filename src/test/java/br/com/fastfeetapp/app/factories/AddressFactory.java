@@ -1,7 +1,6 @@
 package br.com.fastfeetapp.app.factories;
 
-import br.com.fastfeetapp.app.dtos.AddressRequestDto;
-import br.com.fastfeetapp.app.mapper.AddressMapper;
+import br.com.fastfeetapp.app.dtos.address.AddressRequestDto;
 import br.com.fastfeetapp.app.models.Address;
 
 import java.util.UUID;

@@ -1,7 +1,7 @@
 package br.com.fastfeetapp.app.mapper;
 
-import br.com.fastfeetapp.app.dtos.RecipentRequestDto;
-import br.com.fastfeetapp.app.dtos.RecipentResponseDto;
+import br.com.fastfeetapp.app.dtos.recipent.RecipentRequestDto;
+import br.com.fastfeetapp.app.dtos.recipent.RecipentResponseDto;
 import br.com.fastfeetapp.app.models.Recipent;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
