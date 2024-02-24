@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.UUID;
 
 @Data
@@ -24,4 +25,20 @@ public class Recipent implements Serializable {
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "address_id")
     private Address address;
+    @Column(name="created_at", columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
+    private Instant createdAt;
+    @Column(name="updated_at", columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
+    private Instant updatedAt;
+
+    @PrePersist
+    private void preCreate(){
+        this.createdAt = Instant.now();
+    }
+    @PreUpdate
+    private void preUpdate(){
+        this.updatedAt = Instant.now();
+    }
+
+
+
 }

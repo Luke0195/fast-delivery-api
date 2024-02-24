@@ -24,4 +24,5 @@ public class AddressResponseDto  implements Serializable {
     private String state;
     private String city;
     private Integer number;
+
 }

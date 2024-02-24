@@ -11,6 +11,8 @@ import org.mapstruct.factory.Mappers;
 public interface RecipentMapper {
     RecipentMapper INSTANCE = Mappers.getMapper( RecipentMapper.class);
 
+    @Mapping(target = "updatedAt", ignore = true)
+    @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "id", ignore = true)
     Recipent mapAddressRequestDtoToEntity(RecipentRequestDto requestDto);
 
