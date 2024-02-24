@@ -1,5 +1,6 @@
 package br.com.fastfeetapp.app.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,7 +23,8 @@ public class Recipent implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     private String name;
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @JsonBackReference
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id")
     private Address address;
     @Column(name="created_at", columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")

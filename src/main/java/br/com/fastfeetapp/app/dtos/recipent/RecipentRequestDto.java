@@ -1,5 +1,6 @@
 package br.com.fastfeetapp.app.dtos.recipent;
 
+import br.com.fastfeetapp.app.dtos.address.AddressRequestDto;
 import br.com.fastfeetapp.app.models.Address;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;

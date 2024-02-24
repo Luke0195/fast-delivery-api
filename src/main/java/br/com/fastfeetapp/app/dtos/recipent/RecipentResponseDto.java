@@ -1,6 +1,7 @@
 package br.com.fastfeetapp.app.dtos.recipent;
 
 import br.com.fastfeetapp.app.models.Address;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

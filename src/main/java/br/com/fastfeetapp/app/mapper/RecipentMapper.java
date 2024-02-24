@@ -16,5 +16,6 @@ public interface RecipentMapper {
     @Mapping(target = "id", ignore = true)
     Recipent mapAddressRequestDtoToEntity(RecipentRequestDto requestDto);
 
+    @Mapping(target="address.id", source="address.id")
     RecipentResponseDto mapEntityToRecipentAddressDto(Recipent entity);
 }

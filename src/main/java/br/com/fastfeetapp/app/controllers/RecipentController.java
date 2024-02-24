@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 
 @AllArgsConstructor
 @RestController
@@ -28,7 +29,7 @@ public class RecipentController {
 
     @GetMapping
     public ResponseEntity<Page<RecipentResponseDto>> findAllRecipentsPaged(Pageable pageable){
-        Page<RecipentResponseDto> findAllRecipents = recipentServiceImpl.findAllPaged(pageable);
+        Page<RecipentResponseDto> findAllRecipents = recipentServiceImpl.findAll(pageable);
         return ResponseEntity.status(HttpStatus.OK).body(findAllRecipents);
     }
 }

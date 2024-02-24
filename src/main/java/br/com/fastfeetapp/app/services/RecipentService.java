@@ -9,7 +9,7 @@ import org.springframework.data.domain.Pageable;
 public interface RecipentService {
 
     RecipentResponseDto create(RecipentRequestDto requestDto);
-    Page<RecipentResponseDto> findAllPaged(Pageable pageable);
+    Page<RecipentResponseDto> findAll(Pageable pageable);
     RecipentResponseDto findById(String id);
 
     RecipentResponseDto update(String id, RecipentRequestDto requestDto);

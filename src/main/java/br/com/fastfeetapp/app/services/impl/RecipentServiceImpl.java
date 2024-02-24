@@ -4,7 +4,7 @@ import br.com.fastfeetapp.app.dtos.recipent.RecipentRequestDto;
 import br.com.fastfeetapp.app.dtos.recipent.RecipentResponseDto;
 import br.com.fastfeetapp.app.mapper.RecipentMapper;
 import br.com.fastfeetapp.app.models.Recipent;
-import br.com.fastfeetapp.app.repositories.AddressPostgresRepository;
+
 import br.com.fastfeetapp.app.repositories.RecipentPostgresRepository;
 import br.com.fastfeetapp.app.services.RecipentService;
 import lombok.AllArgsConstructor;
@@ -20,7 +20,6 @@ import org.springframework.transaction.annotation.Transactional;
 public class RecipentServiceImpl implements RecipentService {
 
     private final RecipentPostgresRepository recipentRepository;
-    private final AddressPostgresRepository addressRepository;
 
     @Override
     @Transactional
@@ -31,9 +30,10 @@ public class RecipentServiceImpl implements RecipentService {
     }
 
     @Override
-    public Page<RecipentResponseDto> findAllPaged(Pageable pageable) {
-        Page<Recipent> findAllPaged = recipentRepository.findAll(pageable);
-        return findAllPaged.map(RecipentMapper.INSTANCE::mapEntityToRecipentAddressDto);
+    @Transactional(readOnly = true)
+    public Page<RecipentResponseDto> findAll(Pageable pageable) {
+        Page<Recipent> recipents = recipentRepository.findAll(pageable);
+        return recipents.map(RecipentMapper.INSTANCE::mapEntityToRecipentAddressDto);
     }
 
     @Override
