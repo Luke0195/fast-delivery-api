@@ -33,6 +33,10 @@ public class Address implements Serializable {
     private Instant createdAt;
     @Column(name="updated_at", columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private Instant updatedAt;
+    @OneToOne(mappedBy = "address" )
+    private Recipent recipent;
+
+
 
     @PrePersist
     public void prePersist(){

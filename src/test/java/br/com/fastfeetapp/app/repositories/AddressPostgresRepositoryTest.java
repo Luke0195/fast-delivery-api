@@ -11,7 +11,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import java.util.UUID;
 
 @DataJpaTest
-class AddressPostgresRepositoryTests {
+class AddressPostgresRepositoryTest {
     @Autowired
     private AddressPostgresRepository postgresRepository;
 
