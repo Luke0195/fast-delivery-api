@@ -3,21 +3,17 @@ package br.com.fastfeetapp.app.services.impl;
 import br.com.fastfeetapp.app.dtos.RecipentRequestDto;
 import br.com.fastfeetapp.app.dtos.RecipentResponseDto;
 import br.com.fastfeetapp.app.mapper.RecipentMapper;
-import br.com.fastfeetapp.app.models.Address;
 import br.com.fastfeetapp.app.models.Recipent;
 import br.com.fastfeetapp.app.repositories.AddressPostgresRepository;
 import br.com.fastfeetapp.app.repositories.RecipentPostgresRepository;
 import br.com.fastfeetapp.app.services.RecipentService;
-import br.com.fastfeetapp.app.services.exceptions.ResourceAlreadyExists;
-import br.com.fastfeetapp.app.services.exceptions.ResourceNotExistsException;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.awt.print.Pageable;
-import java.util.Optional;
+
 
 @Service
 @AllArgsConstructor
@@ -35,8 +31,8 @@ public class RecipentServiceImpl implements RecipentService {
     }
 
     @Override
-    public Page<RecipentResponseDto> findAllPaged(PageRequest pageRequest) {
-        Page<Recipent> findAllPaged = recipentRepository.findAll(pageRequest);
+    public Page<RecipentResponseDto> findAllPaged(Pageable pageable) {
+        Page<Recipent> findAllPaged = recipentRepository.findAll(pageable);
         return findAllPaged.map(RecipentMapper.INSTANCE::mapEntityToRecipentAddressDto);
     }
 
