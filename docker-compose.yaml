@@ -29,7 +29,6 @@ services:
     networks:
       - fast-delivery-network
 
-
 volumes:
   pgData:
 

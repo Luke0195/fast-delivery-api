@@ -32,4 +32,9 @@ public class RecipentController {
         Page<RecipentResponseDto> findAllRecipents = recipentServiceImpl.findAll(pageable);
         return ResponseEntity.status(HttpStatus.OK).body(findAllRecipents);
     }
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<RecipentResponseDto> findRecipentById(@PathVariable String id){
+        RecipentResponseDto recipent = recipentServiceImpl.findById(id);
+        return ResponseEntity.ok(recipent);
+    }
 }
