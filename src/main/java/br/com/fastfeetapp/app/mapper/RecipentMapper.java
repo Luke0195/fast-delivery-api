@@ -14,8 +14,8 @@ public interface RecipentMapper {
     @Mapping(target = "updatedAt", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "id", ignore = true)
-    Recipent mapAddressRequestDtoToEntity(RecipentRequestDto requestDto);
+    Recipent mapRecipentRequestDtoToEntity(RecipentRequestDto requestDto);
 
     @Mapping(target="address.id", source="address.id")
-    RecipentResponseDto mapEntityToRecipentAddressDto(Recipent entity);
+    RecipentResponseDto mapEntityToRecipentRepsonseDto(Recipent entity);
 }

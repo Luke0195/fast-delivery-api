@@ -14,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -27,16 +28,16 @@ public class RecipentServiceImpl implements RecipentService {
     @Override
     @Transactional
     public RecipentResponseDto create(RecipentRequestDto requestDto) {
-        Recipent recipent = RecipentMapper.INSTANCE.mapAddressRequestDtoToEntity(requestDto);
+        Recipent recipent = mapRecipentDtoToEntity(requestDto);
         recipentRepository.save(recipent);
-        return RecipentMapper.INSTANCE.mapEntityToRecipentAddressDto(recipent);
+        return mapRecipentEntityToDto(recipent);
     }
 
     @Override
     @Transactional(readOnly = true)
     public Page<RecipentResponseDto> findAll(Pageable pageable) {
         Page<Recipent> recipents = recipentRepository.findAll(pageable);
-        return recipents.map(RecipentMapper.INSTANCE::mapEntityToRecipentAddressDto);
+        return recipents.map(RecipentMapper.INSTANCE::mapEntityToRecipentRepsonseDto);
     }
 
     @Override
@@ -44,16 +45,33 @@ public class RecipentServiceImpl implements RecipentService {
     public RecipentResponseDto findById(String id) {
         Optional<Recipent> recipentExists = recipentRepository.findById(UUID.fromString(id));
         if(recipentExists.isEmpty()) throw new ResourceNotExistsException("Entity not found");
-        return RecipentMapper.INSTANCE.mapEntityToRecipentAddressDto(recipentExists.get());
+        return mapRecipentEntityToDto(recipentExists.get());
     }
 
     @Override
+    @Transactional(readOnly = true)
     public RecipentResponseDto update(String id, RecipentRequestDto requestDto) {
-        return null;
+        Recipent recipent = recipentRepository.getReferenceById(UUID.fromString(id));
+        if(Objects.isNull(recipent.getId())) throw new ResourceNotExistsException("Id not found");
+        recipent =  mapRecipentDtoToEntity(requestDto);
+        recipentRepository.save(recipent);
+        return mapRecipentEntityToDto(recipent);
+
+
     }
 
     @Override
     public void deleteById(String id) {
+       Optional<Recipent> recipentExists = recipentRepository.findById(UUID.fromString(id));
+       Recipent recipent = recipentExists.orElseThrow(() -> new ResourceNotExistsException("Id not found"));
+       recipentRepository.deleteById(recipent.getId());
+    }
 
+    private Recipent mapRecipentDtoToEntity(RecipentRequestDto dto){
+        return RecipentMapper.INSTANCE.mapRecipentRequestDtoToEntity(dto);
+    }
+
+    private RecipentResponseDto mapRecipentEntityToDto(Recipent recipent){
+        return RecipentMapper.INSTANCE.mapEntityToRecipentRepsonseDto(recipent);
     }
 }

@@ -31,7 +31,7 @@ public class ControllerExceptionHandler {
         ResponseErrorDto response = ResponseErrorDto
                 .builder()
                 .timestamp(Instant.now())
-                .status(HttpStatus.BAD_REQUEST.value())
+                .status(HttpStatus.NOT_FOUND.value())
                 .errorMessage("Entity not found!")
                 .exceptionMessage(exception.getMessage())
                 .path(request.getRequestURI())

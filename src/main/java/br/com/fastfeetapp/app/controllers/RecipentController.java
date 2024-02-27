@@ -1,5 +1,6 @@
 package br.com.fastfeetapp.app.controllers;
 
+
 import br.com.fastfeetapp.app.dtos.recipent.RecipentRequestDto;
 import br.com.fastfeetapp.app.dtos.recipent.RecipentResponseDto;
 import br.com.fastfeetapp.app.services.impl.RecipentServiceImpl;
@@ -36,5 +37,11 @@ public class RecipentController {
     public ResponseEntity<RecipentResponseDto> findRecipentById(@PathVariable String id){
         RecipentResponseDto recipent = recipentServiceImpl.findById(id);
         return ResponseEntity.ok(recipent);
+    }
+
+    @DeleteMapping(value="/{id}")
+    public ResponseEntity<Void> deleteById(@PathVariable String id){
+        recipentServiceImpl.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 }
