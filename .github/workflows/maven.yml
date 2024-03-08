@@ -21,9 +21,9 @@ jobs:
     needs: ['test']
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/download-artifact@v2
+      - name: Download war
+        uses: actions/download-artifact@v2
         with:
-         name: artifact
-    
+          name: artifact
       
 
